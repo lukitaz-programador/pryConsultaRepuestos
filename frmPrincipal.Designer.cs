@@ -137,21 +137,25 @@
             // 
             // lstOrigen
             // 
+            lstOrigen.DropDownStyle = ComboBoxStyle.DropDownList;
             lstOrigen.FormattingEnabled = true;
             lstOrigen.Items.AddRange(new object[] { "(N) Nacional", "(I) Importado" });
             lstOrigen.Location = new Point(18, 114);
             lstOrigen.Name = "lstOrigen";
             lstOrigen.Size = new Size(239, 25);
             lstOrigen.TabIndex = 1;
+            lstOrigen.SelectedIndexChanged += lstOrigen_SelectedIndexChanged;
             // 
             // lstMarca
             // 
+            lstMarca.DropDownStyle = ComboBoxStyle.DropDownList;
             lstMarca.FormattingEnabled = true;
             lstMarca.Items.AddRange(new object[] { "(P) Peugeot", "(F) Fiat", "(R) Renault" });
             lstMarca.Location = new Point(18, 54);
             lstMarca.Name = "lstMarca";
             lstMarca.Size = new Size(239, 25);
             lstMarca.TabIndex = 0;
+            lstMarca.SelectedIndexChanged += lstMarca_SelectedIndexChanged;
             // 
             // btnRegistrar
             // 
