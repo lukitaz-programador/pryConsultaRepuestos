@@ -75,8 +75,6 @@ namespace pryConsultaRepuestos
         }
         private void mtbNumero_TextChanged(object sender, EventArgs e)
         {
-            numero = Convert.ToInt32(mtbNumero.Mask);
-
             if (mtbNumero.MaskFull)
             {
                 txtDescripción.Enabled = true;
@@ -85,6 +83,8 @@ namespace pryConsultaRepuestos
             {
                 txtDescripción.Enabled = false;
             }
+
+            numero = Convert.ToInt32(mtbNumero.Mask);
         }
 
         //Permite que solo los números se escriban en el TextBox
@@ -119,8 +119,6 @@ namespace pryConsultaRepuestos
         }
         private void mtbPrecio_TextChanged(object sender, EventArgs e)
         {
-            precio = Convert.ToInt32(mtbPrecio.Mask);
-
             if (mtbPrecio.Text != "")
             {
                 btnRegistrar.Enabled = true;
@@ -128,6 +126,17 @@ namespace pryConsultaRepuestos
             else
             {
                 btnRegistrar.Enabled = false;
+            }
+
+            string precioString = mtbPrecio.Text.Replace("€", "").Trim();
+
+            if (decimal.TryParse(precioString, out decimal valor))
+            {
+                precio = valor;
+            }
+            else
+            {
+                precio = 0;
             }
         }
 
