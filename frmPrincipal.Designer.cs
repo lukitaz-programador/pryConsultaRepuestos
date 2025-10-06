@@ -31,8 +31,8 @@
             grbDatos = new GroupBox();
             lblPrecioo = new Label();
             lblDescripciónn = new Label();
-            lblNúmero = new Label();
-            lblOrigen = new Label();
+            lblNúmeroo = new Label();
+            lblOrigenn = new Label();
             lblMarcaa = new Label();
             mtbPrecio = new MaskedTextBox();
             txtDescripción = new TextBox();
@@ -43,20 +43,27 @@
             tbcPaginas = new TabControl();
             tbpRegistrar = new TabPage();
             tbpConsultar = new TabPage();
-            button1 = new Button();
+            btnConsultar = new Button();
             grbDatoss = new GroupBox();
+            lblRespuestoo = new Label();
+            lblOrigennn = new Label();
+            lblMarcaaa = new Label();
+            lstRepuestos = new ListBox();
+            lstOrigenn = new ComboBox();
+            lstMarcaa = new ComboBox();
             grbDatos.SuspendLayout();
             tbcPaginas.SuspendLayout();
             tbpRegistrar.SuspendLayout();
             tbpConsultar.SuspendLayout();
+            grbDatoss.SuspendLayout();
             SuspendLayout();
             // 
             // grbDatos
             // 
             grbDatos.Controls.Add(lblPrecioo);
             grbDatos.Controls.Add(lblDescripciónn);
-            grbDatos.Controls.Add(lblNúmero);
-            grbDatos.Controls.Add(lblOrigen);
+            grbDatos.Controls.Add(lblNúmeroo);
+            grbDatos.Controls.Add(lblOrigenn);
             grbDatos.Controls.Add(lblMarcaa);
             grbDatos.Controls.Add(mtbPrecio);
             grbDatos.Controls.Add(txtDescripción);
@@ -90,23 +97,23 @@
             lblDescripciónn.TabIndex = 8;
             lblDescripciónn.Text = "Descripción:";
             // 
-            // lblNúmero
+            // lblNúmeroo
             // 
-            lblNúmero.AutoSize = true;
-            lblNúmero.Location = new Point(18, 155);
-            lblNúmero.Name = "lblNúmero";
-            lblNúmero.Size = new Size(62, 19);
-            lblNúmero.TabIndex = 7;
-            lblNúmero.Text = "Número:";
+            lblNúmeroo.AutoSize = true;
+            lblNúmeroo.Location = new Point(18, 155);
+            lblNúmeroo.Name = "lblNúmeroo";
+            lblNúmeroo.Size = new Size(62, 19);
+            lblNúmeroo.TabIndex = 7;
+            lblNúmeroo.Text = "Número:";
             // 
-            // lblOrigen
+            // lblOrigenn
             // 
-            lblOrigen.AutoSize = true;
-            lblOrigen.Location = new Point(18, 92);
-            lblOrigen.Name = "lblOrigen";
-            lblOrigen.Size = new Size(54, 19);
-            lblOrigen.TabIndex = 6;
-            lblOrigen.Text = "Origen:";
+            lblOrigenn.AutoSize = true;
+            lblOrigenn.Location = new Point(18, 92);
+            lblOrigenn.Name = "lblOrigenn";
+            lblOrigenn.Size = new Size(54, 19);
+            lblOrigenn.TabIndex = 6;
+            lblOrigenn.Text = "Origen:";
             // 
             // lblMarcaa
             // 
@@ -208,36 +215,97 @@
             // 
             // tbpConsultar
             // 
-            tbpConsultar.Controls.Add(button1);
+            tbpConsultar.Controls.Add(btnConsultar);
             tbpConsultar.Controls.Add(grbDatoss);
-            tbpConsultar.Location = new Point(4, 24);
+            tbpConsultar.Location = new Point(4, 26);
             tbpConsultar.Name = "tbpConsultar";
             tbpConsultar.Padding = new Padding(3);
-            tbpConsultar.Size = new Size(319, 460);
+            tbpConsultar.Size = new Size(319, 458);
             tbpConsultar.TabIndex = 1;
             tbpConsultar.Text = "Consultar";
             tbpConsultar.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnConsultar
             // 
-            button1.BackColor = SystemColors.Highlight;
-            button1.ForeColor = SystemColors.ControlLightLight;
-            button1.Location = new Point(17, 404);
-            button1.Name = "button1";
-            button1.Size = new Size(284, 42);
-            button1.TabIndex = 1;
-            button1.Text = "Consultar Ingreso";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += button1_Click;
+            btnConsultar.BackColor = SystemColors.Highlight;
+            btnConsultar.ForeColor = SystemColors.ControlLightLight;
+            btnConsultar.Location = new Point(17, 404);
+            btnConsultar.Name = "btnConsultar";
+            btnConsultar.Size = new Size(280, 42);
+            btnConsultar.TabIndex = 1;
+            btnConsultar.Text = "Consultar Ingreso";
+            btnConsultar.UseVisualStyleBackColor = false;
             // 
             // grbDatoss
             // 
+            grbDatoss.Controls.Add(lblRespuestoo);
+            grbDatoss.Controls.Add(lblOrigennn);
+            grbDatoss.Controls.Add(lblMarcaaa);
+            grbDatoss.Controls.Add(lstRepuestos);
+            grbDatoss.Controls.Add(lstOrigenn);
+            grbDatoss.Controls.Add(lstMarcaa);
             grbDatoss.Location = new Point(17, 15);
             grbDatoss.Name = "grbDatoss";
-            grbDatoss.Size = new Size(284, 383);
+            grbDatoss.Size = new Size(280, 383);
             grbDatoss.TabIndex = 0;
             grbDatoss.TabStop = false;
             grbDatoss.Text = "Datos del Repuesto:";
+            // 
+            // lblRespuestoo
+            // 
+            lblRespuestoo.AutoSize = true;
+            lblRespuestoo.Location = new Point(21, 151);
+            lblRespuestoo.Name = "lblRespuestoo";
+            lblRespuestoo.Size = new Size(138, 19);
+            lblRespuestoo.TabIndex = 5;
+            lblRespuestoo.Text = "Repuesto Registrado:";
+            // 
+            // lblOrigennn
+            // 
+            lblOrigennn.AutoSize = true;
+            lblOrigennn.Location = new Point(20, 93);
+            lblOrigennn.Name = "lblOrigennn";
+            lblOrigennn.Size = new Size(51, 19);
+            lblOrigennn.TabIndex = 4;
+            lblOrigennn.Text = "Origen";
+            // 
+            // lblMarcaaa
+            // 
+            lblMarcaaa.AutoSize = true;
+            lblMarcaaa.Location = new Point(20, 35);
+            lblMarcaaa.Name = "lblMarcaaa";
+            lblMarcaaa.Size = new Size(50, 19);
+            lblMarcaaa.TabIndex = 3;
+            lblMarcaaa.Text = "Marca:";
+            // 
+            // lstRepuestos
+            // 
+            lstRepuestos.FormattingEnabled = true;
+            lstRepuestos.ItemHeight = 17;
+            lstRepuestos.Location = new Point(21, 176);
+            lstRepuestos.Name = "lstRepuestos";
+            lstRepuestos.Size = new Size(240, 191);
+            lstRepuestos.TabIndex = 2;
+            // 
+            // lstOrigenn
+            // 
+            lstOrigenn.DropDownStyle = ComboBoxStyle.DropDownList;
+            lstOrigenn.FormattingEnabled = true;
+            lstOrigenn.Location = new Point(21, 115);
+            lstOrigenn.Name = "lstOrigenn";
+            lstOrigenn.Size = new Size(240, 25);
+            lstOrigenn.TabIndex = 1;
+            lstOrigenn.SelectedIndexChanged += lstOrigenn_SelectedIndexChanged;
+            // 
+            // lstMarcaa
+            // 
+            lstMarcaa.DropDownStyle = ComboBoxStyle.DropDownList;
+            lstMarcaa.FormattingEnabled = true;
+            lstMarcaa.Location = new Point(21, 55);
+            lstMarcaa.Name = "lstMarcaa";
+            lstMarcaa.Size = new Size(240, 25);
+            lstMarcaa.TabIndex = 0;
+            lstMarcaa.SelectedIndexChanged += lstMarcaa_SelectedIndexChanged;
             // 
             // frmPrincipal
             // 
@@ -255,6 +323,8 @@
             tbcPaginas.ResumeLayout(false);
             tbpRegistrar.ResumeLayout(false);
             tbpConsultar.ResumeLayout(false);
+            grbDatoss.ResumeLayout(false);
+            grbDatoss.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -269,13 +339,19 @@
         private Button btnRegistrar;
         private Label lblPrecioo;
         private Label lblDescripciónn;
-        private Label lblNúmero;
-        private Label lblOrigen;
+        private Label lblNúmeroo;
+        private Label lblOrigenn;
         private Label lblMarcaa;
         private TabControl tbcPaginas;
         private TabPage tbpRegistrar;
         private TabPage tbpConsultar;
-        private Button button1;
+        private Button btnConsultar;
         private GroupBox grbDatoss;
+        private Label lblRespuestoo;
+        private Label lblOrigennn;
+        private Label lblMarcaaa;
+        private ListBox lstRepuestos;
+        private ComboBox lstOrigenn;
+        private ComboBox lstMarcaa;
     }
 }

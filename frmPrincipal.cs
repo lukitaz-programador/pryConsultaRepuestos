@@ -1,4 +1,4 @@
-namespace pryConsultaRepuestos
+﻿namespace pryConsultaRepuestos
 {
     public partial class frmPrincipal : Form
     {
@@ -7,7 +7,7 @@ namespace pryConsultaRepuestos
             InitializeComponent();
         }
 
-        //Definici�n de variables globales
+        //Definición de variables globales
         public static string[] vecDatos = new string[100];
         string marca;
         string origen;
@@ -25,6 +25,13 @@ namespace pryConsultaRepuestos
 
             lstOrigen.Items.Add("(N) Nacional");
             lstOrigen.Items.Add("(I) Importado");
+
+            lstMarcaa.Items.Add("(P) Peugeot");
+            lstMarcaa.Items.Add("(F) Fiat");
+            lstMarcaa.Items.Add("(R) Renault");
+
+            lstOrigenn.Items.Add("(N) Nacional");
+            lstOrigenn.Items.Add("(I) Importado");
         }
         private void lstMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -77,33 +84,33 @@ namespace pryConsultaRepuestos
         {
             if (mtbNumero.MaskFull)
             {
-                txtDescripci�n.Enabled = true;
+                txtDescripción.Enabled = true;
             }
             else
             {
-                txtDescripci�n.Enabled = false;
+                txtDescripción.Enabled = false;
             }
 
             numero = Convert.ToInt32(mtbNumero.Mask);
         }
 
-        //Permite que solo los n�meros se escriban en el TextBox
+        //Permite que solo los números se escriban en el TextBox
 
         // private void txtNumero_KeyPress(object sender, KeyPressEventArgs e)
         // {
 
         //      if (!char.IsNumber(e.KeyChar) && e.KeyChar != (char)Keys.Back)
         //      {
-        //        e.Handled = true; // Cancela la pulsaci�n de la tecla si no es un n�mero o la tecla Backspace
+        //        e.Handled = true; // Cancela la pulsación de la tecla si no es un número o la tecla Backspace
         //      }
 
         // }
 
-        private void txtDescripci�n_TextChanged(object sender, EventArgs e)
+        private void txtDescripción_TextChanged(object sender, EventArgs e)
         {
-            descripcion = txtDescripci�n.Text;
+            descripcion = txtDescripción.Text;
 
-            if (txtDescripci�n.Text != "")
+            if (txtDescripción.Text != "")
             {
                 mtbPrecio.Enabled = true;
             }
@@ -128,7 +135,7 @@ namespace pryConsultaRepuestos
                 btnRegistrar.Enabled = false;
             }
 
-            string precioString = mtbPrecio.Text.Replace("�", "").Trim();
+            string precioString = mtbPrecio.Text.Replace("€", "").Trim();
 
             if (decimal.TryParse(precioString, out decimal valor))
             {
@@ -143,32 +150,90 @@ namespace pryConsultaRepuestos
         private void btnRegistrar_Click(object sender, EventArgs e)
         {
             int i = 0;
+            carga = true;
 
-            //Guardamos las variables dentro del vector
-            while (i < 100)
+            // Recorremos solo hasta la cantidad de datos cargados (indice)
+            while (i < indice)
             {
-                //defino un array que me separe el vecDatos en 5
-                string[] vecVariables = vecDatos[i].Split("; ");
-
-                //armo una variable que me guarde el tercer valor de vecVariables
-                string tercera = vecVariables[2];
-
-                if (tercera == Convert.ToString(numero))
+                if (vecDatos[i] != null) // si hay algo en esa posición
                 {
-                    MessageBox.Show("Error. Ese n�mero de repuesto ya est� ingresado.");
-                    carga = false;
+                    // .Split() → Sirve para "cortar" un string en partes usando un separador
+                    // Ejemplo: "A,B,C".Split(',') → ["A", "B", "C"]
+                    string[] vecVariables = vecDatos[i].Split(',');
+
+                    // .Trim() → Saca espacios en blanco al inicio y final de un string
+                    // Ejemplo: "  Hola  ".Trim() → "Hola"
+                    string tercera = vecVariables[2].Trim();
+
+                    if (tercera == numero.ToString())
+                    {
+                        MessageBox.Show("Error. Ese número de repuesto ya está ingresado.");
+                        carga = false;
+                        break; // salgo del bucle porque ya encontré duplicado
+                    }
                 }
+                i++;
             }
 
+            // Si no hubo error, guardamos el nuevo repuesto
             if (carga)
             {
-                vecDatos[indice] = (marca + ", " + origen + ", "
-                    + numero + ", " + descripcion + ", " + precio);
+                vecDatos[indice] = marca + ", " + origen + ", "
+                                 + numero + ", " + descripcion + ", " + precio;
                 indice++;
+
+                lstMarca.SelectedIndex = -1;
+                lstOrigen.SelectedIndex = -1;
+                mtbNumero.Text = "";
+                txtDescripción.Text = "";
+                mtbPrecio.Text = "";
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void lstMarcaa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string marcaElegida;
+            string origenElegido;
+
+            marcaElegida = lstMarcaa.Text;
+            origenElegido = lstOrigenn.Text;
+            bool coincideMarca = true;
+            bool coincideOrigen = true;
+
+            int i = 0;
+
+            while (i < indice)
+            {
+                if (vecDatos[i] != null) // si hay algo en esa posición
+                {
+                    // .Split() → Sirve para "cortar" un string en partes usando un separador
+                    // Ejemplo: "A,B,C".Split(',') → ["A", "B", "C"]
+                    string[] vecVariables = vecDatos[i].Split(',');
+
+                    // .Trim() → Saca espacios en blanco al inicio y final de un string
+                    // Ejemplo: "  Hola  ".Trim() → "Hola"
+                    string primera = vecVariables[0].Trim();
+                    string segunda = vecVariables[1].Trim();
+
+                    if (primera != marcaElegida)
+                    {
+                        coincideMarca = false;
+                    }
+                    if (segunda!=origenElegido)
+                    {
+                        coincideOrigen = false;
+                    }
+
+                    if (coincideMarca==true && coincideOrigen==true)
+                    {
+                        lstRepuestos.Items.Add(vecDatos[indice]);
+                    }
+                }
+                i++;
+            }
+        }
+
+        private void lstOrigenn_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
