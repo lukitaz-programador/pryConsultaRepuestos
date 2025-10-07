@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrincipal));
             grbDatos = new GroupBox();
             lblPrecioo = new Label();
             lblDescripciónn = new Label();
@@ -217,10 +218,10 @@
             // 
             tbpConsultar.Controls.Add(btnConsultar);
             tbpConsultar.Controls.Add(grbDatoss);
-            tbpConsultar.Location = new Point(4, 26);
+            tbpConsultar.Location = new Point(4, 24);
             tbpConsultar.Name = "tbpConsultar";
             tbpConsultar.Padding = new Padding(3);
-            tbpConsultar.Size = new Size(319, 458);
+            tbpConsultar.Size = new Size(319, 460);
             tbpConsultar.TabIndex = 1;
             tbpConsultar.Text = "Consultar";
             tbpConsultar.UseVisualStyleBackColor = true;
@@ -235,6 +236,7 @@
             btnConsultar.TabIndex = 1;
             btnConsultar.Text = "Consultar Ingreso";
             btnConsultar.UseVisualStyleBackColor = false;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // grbDatoss
             // 
@@ -314,6 +316,7 @@
             ClientSize = new Size(349, 510);
             Controls.Add(tbcPaginas);
             Font = new Font("Segoe UI", 10F);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Ingresar Repuestos";

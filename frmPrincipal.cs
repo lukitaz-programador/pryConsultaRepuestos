@@ -16,6 +16,10 @@
         decimal precio;
         int indice = 0;
         bool carga;
+        string[] vecConsulta= new string[100];
+        string marcaElegida;
+        string origenElegido;
+        int i;
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
@@ -91,7 +95,11 @@
                 txtDescripción.Enabled = false;
             }
 
-            numero = Convert.ToInt32(mtbNumero.Mask);
+            if (!string.IsNullOrWhiteSpace(mtbNumero.Text))
+            {
+                numero = Convert.ToInt32(mtbNumero.Text);
+            }
+
         }
 
         //Permite que solo los números se escriban en el TextBox
@@ -179,7 +187,7 @@
             if (carga)
             {
                 vecDatos[indice] = marca + ", " + origen + ", "
-                                 + numero + ", " + descripcion + ", " + precio;
+                                 + numero + ", " + descripcion + ", $" + precio;
                 indice++;
 
                 lstMarca.SelectedIndex = -1;
@@ -192,50 +200,74 @@
 
         private void lstMarcaa_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string marcaElegida;
-            string origenElegido;
+          
+        }
 
-            marcaElegida = lstMarcaa.Text;
-            origenElegido = lstOrigenn.Text;
-            bool coincideMarca = true;
-            bool coincideOrigen = true;
+        private void lstOrigenn_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-            int i = 0;
+        }
 
-            while (i < indice)
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            lstRepuestos.Items.Clear();
+
+            if (indice == 0)
             {
-                if (vecDatos[i] != null) // si hay algo en esa posición
+                MessageBox.Show("No hay ningún repeusto en la base de datos");
+            }
+            else if (indice != 0)
+            {
+                i = 0;
+                while (i < indice)
                 {
                     // .Split() → Sirve para "cortar" un string en partes usando un separador
                     // Ejemplo: "A,B,C".Split(',') → ["A", "B", "C"]
-                    string[] vecVariables = vecDatos[i].Split(',');
+                    string[] vecVariables = vecDatos[i].Split(",");
 
                     // .Trim() → Saca espacios en blanco al inicio y final de un string
                     // Ejemplo: "  Hola  ".Trim() → "Hola"
                     string primera = vecVariables[0].Trim();
                     string segunda = vecVariables[1].Trim();
 
-                    if (primera != marcaElegida)
+                    //Aca le asginamos la letra a cada tipo
+                    switch (lstMarcaa.Text)
                     {
-                        coincideMarca = false;
-                    }
-                    if (segunda!=origenElegido)
-                    {
-                        coincideOrigen = false;
+                        case "(P) Peugeot":
+                            marcaElegida = "P";
+                            break;
+
+                        case "(F) Fiat":
+                            marcaElegida = "F";
+                            break;
+
+                        case "(R) Renault":
+                            marcaElegida = "R";
+                            break;
                     }
 
-                    if (coincideMarca==true && coincideOrigen==true)
+                    if (lstOrigenn.Text == "(N) Nacional")
                     {
-                        lstRepuestos.Items.Add(vecDatos[indice]);
+                        origenElegido = "N";
                     }
+                    else if (lstOrigenn.Text == "(I) Importado")
+                    {
+                        origenElegido = "I";
+                    }   
+
+                    if (primera == marcaElegida && segunda == origenElegido)
+                    {
+                        vecConsulta[i] = vecDatos[i];
+                        lstRepuestos.Items.Add(vecConsulta[i]);
+                    }
+                    i++;
                 }
-                i++;
+
+                if (lstRepuestos.Items.Count==0)
+                {
+                    MessageBox.Show("No hay repuestos de esta marca y origen");
+                }
             }
-        }
-
-        private void lstOrigenn_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
